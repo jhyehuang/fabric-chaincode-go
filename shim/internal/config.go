@@ -73,6 +73,7 @@ func LoadConfig() (Config, error) {
 	var cert []byte
 	path, set = os.LookupEnv("CORE_TLS_CLIENT_CERT_FILE")
 	chaincodeLogger.Infof("path: %s\n", path)
+	chaincodeLogger.Infof("CORE_TLS_CLIENT_CERT_FILE: %s\n", os.Getenv("CORE_TLS_CLIENT_CERT_FILE"))
 	if set {
 		cert, err = ioutil.ReadFile(path)
 		if err != nil {
