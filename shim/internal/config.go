@@ -71,6 +71,7 @@ func LoadConfig() (Config, error) {
 	}
 
 	var cert []byte
+	path, set = os.LookupEnv("CORE_TLS_CLIENT_CERT_FILE")
 	chaincodeLogger.Infof("path: %s\n", path)
 	if set {
 		cert, err = ioutil.ReadFile(path)
@@ -124,7 +125,7 @@ func LoadTLSConfig(isserver bool, key, cert, root []byte) (*tls.Config, error) {
 
 	cccert, err := tls.X509KeyPair(cert, key)
 	if err != nil {
-		return nil, fmt.Errorf("failed to parse client key pair: %s ,%X ,%X", err,cert,key)
+		return nil, fmt.Errorf("failed to parse client key pair: %s ,%X ,%X \n", err,cert,key)
 	}
 
 	var rootCertPool *x509.CertPool
